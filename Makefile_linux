@@ -1,0 +1,2 @@
+# Alias para quem digita underscore: o ficheiro real é Makefile.linux
+include Makefile.linux

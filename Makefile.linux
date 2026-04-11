@@ -1,0 +1,35 @@
+CXX = g++
+
+# Includes e defines (sem -O3)
+CXXFLAGS_COMMON = -I/usr/include/libxml2 -I/usr/include/lua5.1 -Isource -DBOOST_BIND_GLOBAL_PLACEHOLDERS -DEXCEPTION_TRACER -DTLM_BUY_SELL -DTLM_SERVER_SAVE -DTLM_HOUSE_SYSTEM -DBDB_UTEVO_LUX -DWOLV_LOAD_NPC -DBD_HOUSE_WINDOW -DTR_ANTI_AFK -DELEM_VIP_LIST -DTR_SUMMONS -DTRS_GM_INVISIBLE -DTLM_SKULLS_PARTY -DBRN_EXIVA -DSD_BURST_ARROW -DBDB_REPLACE_SPEARS -DBD_ITEM_LOOK -DSM_RELOAD_CONFIG -DJD_DEATH_LIST -DCT_EXANI_TERA -DCVS_DAY_CYCLE -DTJ_MONSTER_BLOOD -DJD_WANDS -D__DEBUG_PLAYERS__ -DYUR_CVS_MODS -DYUR_ICE_RAPIER -DYUR_AOL -DYUR_LOGIN_QUEUE -DYUR_MULTIPLIERS -DYUR_BOH -DYUR_NPC_EXT -DYUR_GUILD_SYSTEM -DYUR_CMD_EXT -DYUR_ITEM_EXT -DYUR_ACT_EXT -DYUR_NO_MONSTER_HEAL -DYUR_PVP_ARENA -DYUR_RINGS_AMULETS -DYUR_CONFIG_CAP -DYUR_FIGHT_MODE -DYUR_READABLES -DYUR_LEARN_SPELLS -DYUR_HEAL_EXHAUST -DYUR_SHUTDOWN -DYUR_ROOKGARD -DYUR_LIGHT_ITEM -DYUR_CLEAN_MAP -DYUR_GM_LOOK -DYUR_HIGH_LEVELS -DYUR_PREMIUM_PROMOTION -DYUR_INVISIBLE -DYUR_DRAINS -DYUR_BUILTIN_AAC -DTDS_BOX -DVITOR_RVR_HANDLING -DMOVE_UP -D_REX_FIGHT_MOD_ -DBD_FOLLOW
+
+LIBS_BASE = -lxml2 -llua5.1 -lboost_regex -lboost_system -lboost_filesystem -lz -lpthread
+
+# ASan: make -f Makefile.linux clean && make -f Makefile.linux BUILD=asan
+ifeq ($(BUILD),asan)
+CXXFLAGS = $(CXXFLAGS_COMMON) -g -O1 -fsanitize=address -fno-omit-frame-pointer
+LIBS = $(LIBS_BASE) -fsanitize=address
+else
+CXXFLAGS = $(CXXFLAGS_COMMON) -O3 -fexpensive-optimizations
+LIBS = $(LIBS_BASE)
+endif
+
+OBJ_DIR = source
+OBJECTS = $(OBJ_DIR)/creature.o $(OBJ_DIR)/database.o $(OBJ_DIR)/exception.o $(OBJ_DIR)/fileloader.o $(OBJ_DIR)/game.o $(OBJ_DIR)/guilds.o $(OBJ_DIR)/houses.o $(OBJ_DIR)/ioaccount.o $(OBJ_DIR)/ioaccountxml.o $(OBJ_DIR)/iomapbin.o $(OBJ_DIR)/iomapotbm.o $(OBJ_DIR)/iomapxml.o $(OBJ_DIR)/ioplayer.o $(OBJ_DIR)/ioplayerxml.o $(OBJ_DIR)/item.o $(OBJ_DIR)/itemloader.o $(OBJ_DIR)/items.o $(OBJ_DIR)/logger.o $(OBJ_DIR)/loginqueue.o $(OBJ_DIR)/luascript.o $(OBJ_DIR)/magic.o $(OBJ_DIR)/map.o $(OBJ_DIR)/md5.o $(OBJ_DIR)/mdump.o $(OBJ_DIR)/monster.o $(OBJ_DIR)/monsters.o $(OBJ_DIR)/networkmessage.o $(OBJ_DIR)/npc.o $(OBJ_DIR)/otserv.o $(OBJ_DIR)/player.o $(OBJ_DIR)/position.o $(OBJ_DIR)/protocol.o $(OBJ_DIR)/protocol76.o $(OBJ_DIR)/pvparena.o $(OBJ_DIR)/readables.o $(OBJ_DIR)/scheduler.o $(OBJ_DIR)/spawn.o $(OBJ_DIR)/spells.o $(OBJ_DIR)/status.o $(OBJ_DIR)/summons.o $(OBJ_DIR)/thing.o $(OBJ_DIR)/tile.o $(OBJ_DIR)/tools.o $(OBJ_DIR)/account.o $(OBJ_DIR)/actions.o $(OBJ_DIR)/allocator.o $(OBJ_DIR)/chat.o $(OBJ_DIR)/commands.o $(OBJ_DIR)/container.o
+
+BIN = YurOTS
+
+all: $(BIN)
+
+$(BIN): $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(BIN) $(LIBS)
+
+$(OBJ_DIR)/%.o: $(OBJ_DIR)/%.cpp
+	$(CXX) -c $< -o $@ $(CXXFLAGS)
+
+clean:
+	rm -f $(OBJECTS) $(BIN)
+
+.PHONY: asan
+asan: clean
+	$(MAKE) -f Makefile.linux BUILD=asan

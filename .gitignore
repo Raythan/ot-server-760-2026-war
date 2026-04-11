@@ -1,0 +1,24 @@
+# Binários e ligação
+YurOTS
+YurOTS.exe
+*.o
+*.map
+*.res
+*.aps
+
+# Runtime Windows (não necessário no WSL)
+*.dll
+
+# Chaves SSH e credenciais locais (nunca versionar)
+chaves/
+
+# Cliente Tibia instalado localmente
+cliente/
+
+# Sistema / IDE / logs
+Thumbs.db
+report.log
+*.stackdump
+
+# Cópias de backup manuais (*Kopie*)
+*Kopie*

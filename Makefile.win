@@ -1,0 +1,177 @@
+# Project: otserv
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = source/otserv_private.res
+OBJ  = source/creature.o source/database.o source/exception.o source/fileloader.o source/game.o source/guilds.o source/houses.o source/ioaccount.o source/ioaccountxml.o source/iomapbin.o source/iomapotbm.o source/iomapxml.o source/ioplayer.o source/ioplayerxml.o source/item.o source/itemloader.o source/items.o source/logger.o source/loginqueue.o source/luascript.o source/magic.o source/map.o source/md5.o source/mdump.o source/monster.o source/monsters.o source/networkmessage.o source/npc.o source/otserv.o source/player.o source/position.o source/protocol.o source/protocol76.o source/pvparena.o source/readables.o source/scheduler.o source/spawn.o source/spells.o source/status.o source/summons.o source/thing.o source/tile.o source/tools.o source/account.o source/actions.o source/allocator.o source/chat.o source/commands.o source/container.o $(RES)
+LINKOBJ  = source/creature.o source/database.o source/exception.o source/fileloader.o source/game.o source/guilds.o source/houses.o source/ioaccount.o source/ioaccountxml.o source/iomapbin.o source/iomapotbm.o source/iomapxml.o source/ioplayer.o source/ioplayerxml.o source/item.o source/itemloader.o source/items.o source/logger.o source/loginqueue.o source/luascript.o source/magic.o source/map.o source/md5.o source/mdump.o source/monster.o source/monsters.o source/networkmessage.o source/npc.o source/otserv.o source/player.o source/position.o source/protocol.o source/protocol76.o source/pvparena.o source/readables.o source/scheduler.o source/spawn.o source/spells.o source/status.o source/summons.o source/thing.o source/tile.o source/tools.o source/account.o source/actions.o source/allocator.o source/chat.o source/commands.o source/container.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib" -L"C:/Dev-Cpp/other/lua-5.0.2/lib" -L"C:/Dev-Cpp/the-agency/boost_1_31_0/the-agency/build/retail" -L"C:/Dev-Cpp/lib" -L"C:/Dev-Cpp/bin" -lwsock32 -s -Wl,-Map=otserv.map -llibboost_regex-mgw-mt-s-1_33_1 C:/Dev-Cpp/bin/libxml2.dll C:/Dev-Cpp/bin/lua5.dll C:/Dev-Cpp/bin/lualib5.dll C:/Dev-Cpp/bin/iconv.dll C:/Dev-Cpp/bin/msvcp80.dll C:/Dev-Cpp/bin/zlib1.dll C:/Dev-Cpp/bin/lua.h C:/Dev-Cpp/bin/lauxlib.h C:/Dev-Cpp/bin/lualib.h C:/Dev-Cpp/bin/msvcr80.dll  
+INCS =  -I"C:/Dev-Cpp/include"  -I"C:/Dev-Cpp/other/lua-5.0.2/include"  -I"C:/Dev-Cpp/the-agency/boost_1_31_0"  -I"C:/Dev-Cpp/include/libxml" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include"  -I"C:/Dev-Cpp/other/lua-5.0.2/include"  -I"C:/Dev-Cpp/the-agency/boost_1_31_0"  -I"C:/Dev-Cpp/include/libxml" 
+BIN  = YurOTS.exe
+CXXFLAGS = $(CXXINCS) -DBOOST_BIND_GLOBAL_PLACEHOLDERS -DEXCEPTION_TRACER -DTLM_BUY_SELL -DTLM_SERVER_SAVE -DTLM_HOUSE_SYSTEM -DBDB_UTEVO_LUX -DWOLV_LOAD_NPC -DBD_HOUSE_WINDOW -DTR_ANTI_AFK -DELEM_VIP_LIST -DTR_SUMMONS -DTRS_GM_INVISIBLE -DTLM_SKULLS_PARTY -DBRN_EXIVA -DSD_BURST_ARROW -DBDB_REPLACE_SPEARS -DBD_ITEM_LOOK -DSM_RELOAD_CONFIG -DJD_DEATH_LIST -DCT_EXANI_TERA -DCVS_DAY_CYCLE -DTJ_MONSTER_BLOOD -DJD_WANDS -D__DEBUG_PLAYERS__ -DYUR_CVS_MODS -DYUR_ICE_RAPIER -DYUR_AOL -DYUR_LOGIN_QUEUE -DYUR_MULTIPLIERS -DYUR_BOH -DYUR_NPC_EXT -DYUR_GUILD_SYSTEM -DYUR_CMD_EXT -DYUR_ITEM_EXT -DYUR_ACT_EXT -DYUR_NO_MONSTER_HEAL -DYUR_PVP_ARENA -DYUR_RINGS_AMULETS -DYUR_CONFIG_CAP -DYUR_FIGHT_MODE -DYUR_READABLES -DYUR_LEARN_SPELLS -DYUR_HEAL_EXHAUST -DYUR_SHUTDOWN -DYUR_ROOKGARD -DYUR_LIGHT_ITEM -DYUR_CLEAN_MAP -DYUR_GM_LOOK -DYUR_HIGH_LEVELS -DYUR_PREMIUM_PROMOTION -DYUR_INVISIBLE -DYUR_DRAINS -DYUR_BUILTIN_AAC -DTDS_BOX -DVITOR_RVR_HANDLING -DMOVE_UP -D_REX_FIGHT_MOD_ -DBD_FOLLOW   -fexpensive-optimizations -O3
+CFLAGS = $(INCS)   -fexpensive-optimizations -O3
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before YurOTS.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o "YurOTS.exe" $(LIBS)
+
+source/creature.o: source/creature.cpp
+	$(CPP) -c source/creature.cpp -o source/creature.o $(CXXFLAGS)
+
+source/database.o: source/database.cpp
+	$(CPP) -c source/database.cpp -o source/database.o $(CXXFLAGS)
+
+source/exception.o: source/exception.cpp
+	$(CPP) -c source/exception.cpp -o source/exception.o $(CXXFLAGS)
+
+source/fileloader.o: source/fileloader.cpp
+	$(CPP) -c source/fileloader.cpp -o source/fileloader.o $(CXXFLAGS)
+
+source/game.o: source/game.cpp
+	$(CPP) -c source/game.cpp -o source/game.o $(CXXFLAGS)
+
+source/guilds.o: source/guilds.cpp
+	$(CPP) -c source/guilds.cpp -o source/guilds.o $(CXXFLAGS)
+
+source/houses.o: source/houses.cpp
+	$(CPP) -c source/houses.cpp -o source/houses.o $(CXXFLAGS)
+
+source/ioaccount.o: source/ioaccount.cpp
+	$(CPP) -c source/ioaccount.cpp -o source/ioaccount.o $(CXXFLAGS)
+
+source/ioaccountxml.o: source/ioaccountxml.cpp
+	$(CPP) -c source/ioaccountxml.cpp -o source/ioaccountxml.o $(CXXFLAGS)
+
+source/iomapbin.o: source/iomapbin.cpp
+	$(CPP) -c source/iomapbin.cpp -o source/iomapbin.o $(CXXFLAGS)
+
+source/iomapotbm.o: source/iomapotbm.cpp
+	$(CPP) -c source/iomapotbm.cpp -o source/iomapotbm.o $(CXXFLAGS)
+
+source/iomapxml.o: source/iomapxml.cpp
+	$(CPP) -c source/iomapxml.cpp -o source/iomapxml.o $(CXXFLAGS)
+
+source/ioplayer.o: source/ioplayer.cpp
+	$(CPP) -c source/ioplayer.cpp -o source/ioplayer.o $(CXXFLAGS)
+
+source/ioplayerxml.o: source/ioplayerxml.cpp
+	$(CPP) -c source/ioplayerxml.cpp -o source/ioplayerxml.o $(CXXFLAGS)
+
+source/item.o: source/item.cpp
+	$(CPP) -c source/item.cpp -o source/item.o $(CXXFLAGS)
+
+source/itemloader.o: source/itemloader.cpp
+	$(CPP) -c source/itemloader.cpp -o source/itemloader.o $(CXXFLAGS)
+
+source/items.o: source/items.cpp
+	$(CPP) -c source/items.cpp -o source/items.o $(CXXFLAGS)
+
+source/logger.o: source/logger.cpp
+	$(CPP) -c source/logger.cpp -o source/logger.o $(CXXFLAGS)
+
+source/loginqueue.o: source/loginqueue.cpp
+	$(CPP) -c source/loginqueue.cpp -o source/loginqueue.o $(CXXFLAGS)
+
+source/luascript.o: source/luascript.cpp
+	$(CPP) -c source/luascript.cpp -o source/luascript.o $(CXXFLAGS)
+
+source/magic.o: source/magic.cpp
+	$(CPP) -c source/magic.cpp -o source/magic.o $(CXXFLAGS)
+
+source/map.o: source/map.cpp
+	$(CPP) -c source/map.cpp -o source/map.o $(CXXFLAGS)
+
+source/md5.o: source/md5.cpp
+	$(CPP) -c source/md5.cpp -o source/md5.o $(CXXFLAGS)
+
+source/mdump.o: source/mdump.cpp
+	$(CPP) -c source/mdump.cpp -o source/mdump.o $(CXXFLAGS)
+
+source/monster.o: source/monster.cpp
+	$(CPP) -c source/monster.cpp -o source/monster.o $(CXXFLAGS)
+
+source/monsters.o: source/monsters.cpp
+	$(CPP) -c source/monsters.cpp -o source/monsters.o $(CXXFLAGS)
+
+source/networkmessage.o: source/networkmessage.cpp
+	$(CPP) -c source/networkmessage.cpp -o source/networkmessage.o $(CXXFLAGS)
+
+source/npc.o: source/npc.cpp
+	$(CPP) -c source/npc.cpp -o source/npc.o $(CXXFLAGS)
+
+source/otserv.o: source/otserv.cpp
+	$(CPP) -c source/otserv.cpp -o source/otserv.o $(CXXFLAGS)
+
+source/player.o: source/player.cpp
+	$(CPP) -c source/player.cpp -o source/player.o $(CXXFLAGS)
+
+source/position.o: source/position.cpp
+	$(CPP) -c source/position.cpp -o source/position.o $(CXXFLAGS)
+
+source/protocol.o: source/protocol.cpp
+	$(CPP) -c source/protocol.cpp -o source/protocol.o $(CXXFLAGS)
+
+source/protocol76.o: source/protocol76.cpp
+	$(CPP) -c source/protocol76.cpp -o source/protocol76.o $(CXXFLAGS)
+
+source/pvparena.o: source/pvparena.cpp
+	$(CPP) -c source/pvparena.cpp -o source/pvparena.o $(CXXFLAGS)
+
+source/readables.o: source/readables.cpp
+	$(CPP) -c source/readables.cpp -o source/readables.o $(CXXFLAGS)
+
+source/scheduler.o: source/scheduler.cpp
+	$(CPP) -c source/scheduler.cpp -o source/scheduler.o $(CXXFLAGS)
+
+source/spawn.o: source/spawn.cpp
+	$(CPP) -c source/spawn.cpp -o source/spawn.o $(CXXFLAGS)
+
+source/spells.o: source/spells.cpp
+	$(CPP) -c source/spells.cpp -o source/spells.o $(CXXFLAGS)
+
+source/status.o: source/status.cpp
+	$(CPP) -c source/status.cpp -o source/status.o $(CXXFLAGS)
+
+source/summons.o: source/summons.cpp
+	$(CPP) -c source/summons.cpp -o source/summons.o $(CXXFLAGS)
+
+source/thing.o: source/thing.cpp
+	$(CPP) -c source/thing.cpp -o source/thing.o $(CXXFLAGS)
+
+source/tile.o: source/tile.cpp
+	$(CPP) -c source/tile.cpp -o source/tile.o $(CXXFLAGS)
+
+source/tools.o: source/tools.cpp
+	$(CPP) -c source/tools.cpp -o source/tools.o $(CXXFLAGS)
+
+source/account.o: source/account.cpp
+	$(CPP) -c source/account.cpp -o source/account.o $(CXXFLAGS)
+
+source/actions.o: source/actions.cpp
+	$(CPP) -c source/actions.cpp -o source/actions.o $(CXXFLAGS)
+
+source/allocator.o: source/allocator.cpp
+	$(CPP) -c source/allocator.cpp -o source/allocator.o $(CXXFLAGS)
+
+source/chat.o: source/chat.cpp
+	$(CPP) -c source/chat.cpp -o source/chat.o $(CXXFLAGS)
+
+source/commands.o: source/commands.cpp
+	$(CPP) -c source/commands.cpp -o source/commands.o $(CXXFLAGS)
+
+source/container.o: source/container.cpp
+	$(CPP) -c source/container.cpp -o source/container.o $(CXXFLAGS)
+
+source/otserv_private.res: otserv_private.rc 
+	$(WINDRES) -i otserv_private.rc --input-format=rc -o source/otserv_private.res -O coff 
