@@ -720,6 +720,16 @@ bool IOPlayerXML::SaveContainer(xmlNodePtr nodeitem,Container* ccontainer)
 
 
 bool IOPlayerXML::savePlayer(Player* player){
+	// saveplayerfile=no skips all writes. If unset, saveplayerdata=no (legacy) still skips saving.
+	{
+		std::string spf = g_config.getGlobalString("saveplayerfile", "");
+		bool skip = (spf == "no");
+		if(!skip && spf != "yes")
+			skip = (g_config.getGlobalString("saveplayerdata", "yes") == "no");
+		if(skip)
+			return true;
+	}
+
 	std::string datadir = g_config.getGlobalString("datadir");
 	std::string filename = datadir + "players/" + player->getName() + ".xml";
 	std::transform (filename.begin(),filename.end(), filename.begin(), tolower);

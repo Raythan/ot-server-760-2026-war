@@ -573,8 +573,18 @@ void GameState::onAttackedCreature(Tile* tile, Creature *attacker, Creature* att
 		dead = true;
 #endif //TJ_MONSTER_BLOOD
 #ifdef JD_DEATH_LIST
-		if (attackedplayer && attacker)
-			attackedplayer->addDeath(attacker->getName(), attackedplayer->level, time(0));
+		if (attackedplayer && attacker){
+			std::string rpd = g_config.getGlobalString("recordplayerdeaths", "");
+			bool record;
+			if(rpd == "no")
+				record = false;
+			else if(rpd == "yes")
+				record = true;
+			else
+				record = (g_config.getGlobalString("saveplayerdata", "yes") != "no");
+			if(record)
+				attackedplayer->addDeath(attacker->getName(), attackedplayer->level, time(0));
+		}
 #endif //JD_DEATH_LIST
 		unsigned char stackpos = tile->getThingStackPos(attackedCreature);
 
