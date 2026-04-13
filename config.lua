@@ -91,6 +91,16 @@ worldname = "World War"
 -- how often do server saves it's state (0 = off, 5 = 5min, 60 = hour)
 autosave = 0
 
+-- write data/players/<name>.xml on logout, death, and server save? (yes/no)
+-- no = disk file is left unchanged; next login loads that file (inventory on the char matches the XML, even if loot dropped to the floor).
+saveplayerfile = "no"
+
+-- add killer/level/time entries to the in-memory death list (yes/no). They are written only when saveplayerfile = yes.
+recordplayerdeaths = "no"
+
+-- legacy: if you still use this instead of saveplayerfile, "no" skips saving. Prefer saveplayerfile.
+-- saveplayerdata = "yes"
+
 -- builtin account maker (rook/main/none)
 accmaker = "none"
 
